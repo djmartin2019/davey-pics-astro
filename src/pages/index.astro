@@ -1,11 +1,453 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const navLinks = [
+	{ label: 'Gallery', href: '#gallery' },
+	{ label: 'Bird Index', href: '#bird-index' },
+	{ label: 'Blog', href: '#field-journal' },
+	{ label: 'Locations', href: '#locations' },
+	{ label: 'About', href: '#about' },
+];
+
+const galleryItems = [
+	{
+		src: '/images/rosate_spoonbill_lake_1.jpeg',
+		alt: 'Roseate spoonbill wading in shallow lake water',
+		label: 'Wetland Encounter',
+		class: 'md:col-span-2 md:row-span-2',
+	},
+	{
+		src: '/images/snowy_egret_lake_1.jpeg',
+		alt: 'Snowy egret backlit against soft lake light',
+		label: 'Backlit Egret',
+		class: 'md:col-span-1 md:row-span-1',
+	},
+	{
+		src: '/images/hawk_1.jpeg',
+		alt: 'Hawk perched at the forest edge',
+		label: 'Forest Edge',
+		class: 'md:col-span-1 md:row-span-1',
+	},
+	{
+		src: '/images/night_heron_1.jpeg',
+		alt: 'Night heron standing watch along the water',
+		label: 'Coastal Watch',
+		class: 'md:col-span-2 md:row-span-1',
+	},
+	{
+		src: '/images/mallards_pond_2.jpeg',
+		alt: 'Mallards drifting across a quiet pond',
+		label: 'Pond Drift',
+		class: 'md:col-span-1 md:row-span-1',
+	},
+];
+
+const birdCards = [
+	{
+		src: '/images/snowy_egret_lake_1.jpeg',
+		alt: 'Snowy egret in lake habitat',
+		name: 'Snowy Egret',
+		location: 'Texas Gulf Coast',
+	},
+	{
+		src: '/images/snowy_killdeer_1.jpeg',
+		alt: 'Killdeer on snowy ground',
+		name: 'Killdeer',
+		location: 'Humble, TX',
+	},
+	{
+		src: '/images/great_blue_heron_swamp.jpeg',
+		alt: 'Great blue heron in swamp habitat',
+		name: 'Great Blue Heron',
+		location: 'East Texas Wetlands',
+	},
+	{
+		src: '/images/rosate_spoonbill_lake_2.jpeg',
+		alt: 'Roseate spoonbill at the lake',
+		name: 'Roseate Spoonbill',
+		location: 'Texas Gulf Coast',
+	},
+	{
+		src: '/images/night_heron_1.jpeg',
+		alt: 'Black-crowned night heron at dusk',
+		name: 'Black-crowned Night Heron',
+		location: 'Houston Area',
+	},
+	{
+		src: '/images/white_throated_sparrow_1.jpeg',
+		alt: 'White-throated sparrow among branches',
+		name: 'White-throated Sparrow',
+		location: 'Jesse H. Jones Park',
+	},
+];
+
+const journalArticles = [
+	{
+		src: '/images/great_blue_heron_swamp.jpeg',
+		alt: 'Great blue heron in misty swamp',
+		title: 'Returning to the Woods',
+		excerpt: 'Notes from an early morning return to familiar trails — mist, silence, and the patience required to see anything at all.',
+		date: 'Field Note · Coming Soon',
+	},
+	{
+		src: '/images/mallards_pond_1.jpeg',
+		alt: 'Mallards on a still pond',
+		title: 'The Patience of Wetland Photography',
+		excerpt: 'Wetlands reward stillness. A reflection on waiting for light, movement, and the moment when everything aligns.',
+		date: 'Field Note · Coming Soon',
+	},
+	{
+		src: '/images/snowy_egret_lake_1.jpeg',
+		alt: 'Snowy egret in golden light',
+		title: 'What Birds Teach You About Light',
+		excerpt: 'Backlight, rim light, and the quiet drama of feathers against water — lessons learned frame by frame.',
+		date: 'Field Note · Coming Soon',
+	},
+];
+
+const locations = [
+	{
+		name: 'Jesse H. Jones Park',
+		region: 'Humble, Texas',
+		description: 'Pine forests, boardwalks, and reliable woodland species within reach of Houston.',
+	},
+	{
+		name: 'Brazos Bend State Park',
+		region: 'Needville, Texas',
+		description: 'Wetlands and open water where waders, herons, and alligators share the same quiet margins.',
+	},
+	{
+		name: 'Galveston Coastal Habitats',
+		region: 'Galveston, Texas',
+		description: 'Shorebirds, coastal marshes, and dramatic light along the bays of Southeast Texas.',
+	},
+];
 ---
 
 <Layout>
-	<Welcome />
+	<!-- Ambient background effects -->
+	<div class="pointer-events-none fixed inset-0 z-0 bg-light-leak" aria-hidden="true"></div>
+	<div
+		class="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(ellipse_at_80%_100%,rgba(201,184,150,0.03)_0%,transparent_50%)]"
+		aria-hidden="true"
+	></div>
+
+	<div class="relative z-10">
+		<Header links={navLinks} />
+
+		<main>
+			<!-- Hero -->
+			<section
+				id="hero"
+				class="relative flex min-h-screen items-end overflow-hidden"
+				aria-label="Introduction"
+			>
+				<div class="absolute inset-0">
+					<img
+						src="/images/great_blue_heron_swamp.jpeg"
+						alt="Great blue heron standing in misty swamp wetlands"
+						class="h-full w-full object-cover object-center"
+						fetchpriority="high"
+					/>
+					<div class="absolute inset-0 bg-black/55"></div>
+					<div class="absolute inset-0 bg-radial-vignette"></div>
+					<div
+						class="absolute inset-0 bg-gradient-to-t from-archive-black via-archive-black/60 to-transparent"
+					></div>
+				</div>
+
+				<div class="relative z-10 mx-auto w-full max-w-7xl px-6 pb-24 pt-32 md:px-10 md:pb-32">
+					<p class="mb-4 text-xs font-medium uppercase tracking-[0.25em] text-archive-gold">
+						DaveyPics Studio · Humble, Texas
+					</p>
+					<h1
+						class="font-display max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-archive-warm-white md:text-6xl md:leading-[1.1]"
+					>
+						Houston Wildlife Photography
+					</h1>
+					<p class="mt-6 max-w-xl text-base leading-relaxed text-archive-muted md:text-lg">
+						Wildlife photography by David Martin, based in Humble, Texas. Specializing in birds and wildlife throughout the Houston area and beyond.
+					</p>
+					<div class="mt-10 flex flex-wrap gap-4">
+						<a
+							href="#gallery"
+							class="inline-flex items-center rounded-sm border border-archive-gold/40 bg-archive-gold/10 px-6 py-3 text-sm font-medium tracking-wide text-archive-ivory backdrop-blur-sm transition-all duration-300 hover:border-archive-gold/70 hover:bg-archive-gold/20 hover:shadow-glow-gold"
+						>
+							Explore the Gallery
+						</a>
+						<a
+							href="#bird-index"
+							class="inline-flex items-center rounded-sm border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium tracking-wide text-archive-warm-white backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:shadow-glow"
+						>
+							View Recent Sightings
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Featured Gallery -->
+			<section id="gallery" class="relative px-6 py-24 md:px-10 md:py-32">
+				<div class="mx-auto max-w-7xl">
+					<div class="mb-16 max-w-2xl">
+						<p class="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-archive-gold">
+							Gallery Preview
+						</p>
+						<h2 class="font-display text-3xl font-semibold text-archive-warm-white md:text-4xl">
+							Selected frames from the field
+						</h2>
+						<p class="mt-4 text-archive-muted leading-relaxed">
+							A curated selection from the field — wetlands, forest edges, and the quiet drama of Houston-area wildlife.
+						</p>
+					</div>
+
+					<div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2 md:gap-5">
+						{
+							galleryItems.map((item) => (
+								<figure
+									class={`group relative overflow-hidden rounded-sm border border-white/5 bg-archive-charcoal ${item.class}`}
+								>
+									<div class="aspect-[4/3] md:aspect-auto md:h-full md:min-h-[220px]">
+										<img
+											src={item.src}
+											alt={item.alt}
+											class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+											loading="lazy"
+										/>
+									</div>
+									<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
+									<figcaption class="absolute inset-x-0 bottom-0 p-5 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+										<span class="text-xs font-medium uppercase tracking-[0.2em] text-archive-gold">
+											{item.label}
+										</span>
+									</figcaption>
+									<div class="pointer-events-none absolute inset-0 rounded-sm opacity-0 shadow-[inset_0_0_60px_rgba(245,240,232,0.06)] transition-opacity duration-300 group-hover:opacity-100" />
+								</figure>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Bird Index Teaser -->
+			<section
+				id="bird-index"
+				class="relative border-t border-white/5 px-6 py-24 md:px-10 md:py-32"
+			>
+				<div class="mx-auto max-w-7xl">
+					<div class="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+						<div class="max-w-2xl">
+							<p class="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-archive-gold">
+								Bird Index
+							</p>
+							<h2 class="font-display text-3xl font-semibold text-archive-warm-white md:text-4xl">
+								Every species photographed tells a story.
+							</h2>
+							<p class="mt-4 text-archive-muted leading-relaxed">
+								A growing index of birds and wildlife documented across the Houston area — each entry a personal record of time spent in the field.
+							</p>
+						</div>
+						<p class="text-sm text-archive-muted/80 md:text-right">
+							<span class="text-archive-gold">6</span> species photographed · collection growing
+						</p>
+					</div>
+
+					<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+						{
+							birdCards.map((bird) => (
+								<article class="group overflow-hidden rounded-sm border border-white/5 bg-archive-charcoal/80 backdrop-blur-sm transition-all duration-300 hover:border-archive-gold/20 hover:shadow-glow-gold">
+									<div class="relative aspect-[4/3] overflow-hidden">
+										<img
+											src={bird.src}
+											alt={bird.alt}
+											class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+											loading="lazy"
+										/>
+										<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+										<span class="absolute right-3 top-3 rounded-sm border border-archive-gold/30 bg-black/50 px-2 py-1 text-[10px] font-medium uppercase tracking-wider text-archive-gold backdrop-blur-sm">
+											Photographed
+										</span>
+									</div>
+									<div class="border-t border-white/5 p-5">
+										<h3 class="font-display text-xl font-semibold text-archive-warm-white">
+											{bird.name}
+										</h3>
+										<p class="mt-1 text-xs uppercase tracking-wider text-archive-muted">
+											{bird.location}
+										</p>
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Field Journal Teaser -->
+			<section
+				id="field-journal"
+				class="relative border-t border-white/5 px-6 py-24 md:px-10 md:py-32"
+			>
+				<div class="mx-auto max-w-7xl">
+					<div class="mb-16 max-w-2xl">
+						<p class="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-archive-gold">
+							Blog
+						</p>
+						<h2 class="font-display text-3xl font-semibold text-archive-warm-white md:text-4xl">
+							Houston Wildlife Photography Blog
+						</h2>
+						<p class="mt-4 text-archive-muted leading-relaxed">
+							Insights on wildlife photography in Houston and throughout Texas, including tips, location guides, and conservation efforts.
+						</p>
+					</div>
+
+					<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+						{
+							journalArticles.map((article) => (
+								<article class="group flex flex-col overflow-hidden rounded-sm border border-white/5 bg-archive-charcoal/60 transition-all duration-300 hover:border-white/10 hover:shadow-glow">
+									<div class="relative aspect-[16/10] overflow-hidden">
+										<img
+											src={article.src}
+											alt={article.alt}
+											class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+											loading="lazy"
+										/>
+										<div class="absolute inset-0 bg-black/20 transition-colors duration-300 group-hover:bg-black/10" />
+									</div>
+									<div class="flex flex-1 flex-col p-6">
+										<p class="text-xs uppercase tracking-wider text-archive-gold">{article.date}</p>
+										<h3 class="font-display mt-3 text-xl font-semibold text-archive-warm-white transition-colors group-hover:text-archive-ivory">
+											{article.title}
+										</h3>
+										<p class="mt-3 flex-1 text-sm leading-relaxed text-archive-muted">
+											{article.excerpt}
+										</p>
+										<span class="mt-5 inline-flex items-center text-xs font-medium uppercase tracking-wider text-archive-muted transition-colors group-hover:text-archive-gold">
+											Read more →
+										</span>
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Locations Teaser -->
+			<section
+				id="locations"
+				class="relative border-t border-white/5 px-6 py-24 md:px-10 md:py-32"
+			>
+				<div class="mx-auto max-w-7xl">
+					<div class="mb-16 max-w-2xl">
+						<p class="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-archive-gold">
+							Locations
+						</p>
+						<h2 class="font-display text-3xl font-semibold text-archive-warm-white md:text-4xl">
+							Places worth returning to
+						</h2>
+						<p class="mt-4 text-archive-muted leading-relaxed">
+							Location guides for photographers and birders across Southeast Texas — drawn from time spent in the field.
+						</p>
+					</div>
+
+					<div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+						{
+							locations.map((loc, i) => (
+								<article class="group relative overflow-hidden rounded-sm border border-white/5 bg-archive-surface p-8 transition-all duration-300 hover:border-archive-gold/15 hover:shadow-glow">
+									<span class="font-display text-5xl font-light text-white/5 transition-colors group-hover:text-archive-gold/10">
+										{String(i + 1).padStart(2, '0')}
+									</span>
+									<h3 class="font-display mt-4 text-2xl font-semibold text-archive-warm-white">
+										{loc.name}
+									</h3>
+									<p class="mt-1 text-xs uppercase tracking-wider text-archive-gold">{loc.region}</p>
+									<p class="mt-4 text-sm leading-relaxed text-archive-muted">{loc.description}</p>
+									<span class="mt-6 inline-block text-xs font-medium uppercase tracking-wider text-archive-muted/60 transition-colors group-hover:text-archive-gold">
+										Guide coming soon
+									</span>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- About -->
+			<section
+				id="about"
+				class="relative border-t border-white/5 px-6 py-24 md:px-10 md:py-32"
+			>
+				<div class="mx-auto max-w-7xl">
+					<div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+						<div class="relative overflow-hidden rounded-sm border border-white/5">
+							<img
+								src="/images/hawk_1.jpeg"
+								alt="Hawk portrait at the forest edge"
+								class="aspect-[4/5] w-full object-cover object-center"
+								loading="lazy"
+							/>
+							<div class="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-transparent" />
+							<div class="pointer-events-none absolute inset-0 shadow-[inset_0_0_80px_rgba(10,10,10,0.5)]" />
+						</div>
+						<div>
+							<p class="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-archive-gold">
+								About
+							</p>
+							<h2 class="font-display text-3xl font-semibold text-archive-warm-white md:text-4xl">
+								Houston Area Wildlife Photography
+							</h2>
+							<div class="mt-6 space-y-4 text-archive-muted leading-relaxed">
+								<p>
+									Based in Humble, Texas, I specialize in capturing the diverse bird and animal species found throughout the Houston area's rich and varied ecosystems. My passion lies in revealing the hidden beauty of our local wildlife through the lens.
+								</p>
+								<p>
+									From the wetlands of Brazos Bend State Park to the coastal habitats of Galveston, my work showcases the incredible biodiversity of Southeast Texas. Each photograph represents hours of patience, technical precision, and a deep respect for nature's delicate balance.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- Footer -->
+		<footer class="border-t border-white/5 px-6 py-12 md:px-10">
+			<div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+				<div>
+					<p class="font-display text-lg font-semibold text-archive-warm-white">
+						DaveyPics Studio
+					</p>
+					<p class="mt-1 text-sm text-archive-muted">
+						Wildlife photography with a focus on Texas birds. Capturing nature through a careful lens.
+					</p>
+					<p class="mt-3 text-sm text-archive-muted">
+						Built by{' '}
+						<a
+							href="https://djm-tech.dev/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-archive-gold transition-colors hover:text-archive-ivory"
+						>
+							DJM Tech
+						</a>
+					</p>
+				</div>
+				<nav aria-label="Social links">
+					<ul class="flex flex-wrap gap-6">
+						<li>
+							<a
+								href="https://www.instagram.com/davey.pics"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="text-sm text-archive-muted transition-colors hover:text-archive-gold"
+							>
+								Instagram
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</footer>
+	</div>
 </Layout>
